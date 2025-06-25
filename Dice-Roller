@@ -1,0 +1,39 @@
+import random
+import time
+import sys
+
+# Function to show a simple rolling animation
+def dice_animation():
+    animation = ['|', '/', '-', '\\']
+    print("Rolling the die...", end='', flush=True)
+    for i in range(10):
+        sys.stdout.write('\rRolling the die... ' + animation[i % 4])
+        sys.stdout.flush()
+        time.sleep(0.12)
+    print('\rRolling the die... Done!   ')
+
+# Function to show a countdown before revealing the result
+def countdown():
+    for i in range(3, 0, -1):
+        print(f"Revealing in {i}...")
+        time.sleep(0.5)
+
+# Function to roll the die and return a number between 1 and 6
+def roll_die():
+    return random.randint(1, 6)
+
+# Main program loop
+def main():
+    print("Welcome to the Dice Roller!")
+    while True:
+        user_input = input("\nPress Enter to roll the die (or type 'q' to quit): ")
+        if user_input.lower() == 'q':
+            print("Thanks for playing!")
+            break
+        dice_animation()
+        countdown()
+        result = roll_die()
+        print(f"\nYou rolled a {result}!\n")
+
+if __name__ == "__main__":
+    main()
